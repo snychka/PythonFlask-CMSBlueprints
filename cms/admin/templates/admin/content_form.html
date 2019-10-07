@@ -25,6 +25,15 @@
           <label class="label">Type</label>
           <div class="control">
             <div class="select">
+              <!--
+                https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select
+                https://jinja.palletsprojects.com/en/2.10.x/templates/
+              -->
+							<select name="type_id">
+                {% for type in types %}
+									<option {{ 'selected' if (type.name == type_name) }} value="{{type.id}}">{{type.name}}</option>
+                {% endfor %}
+							</select>
             </div>
           </div>
         </div>
