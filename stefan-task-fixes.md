@@ -9,3 +9,5 @@ module2
   - for bit a bit oddly worded
   - missing . in type.id and type.name?
   - <option>'s start tag really confused me
+  - order of select matters, shouldn't (Tom likely fixed)
+

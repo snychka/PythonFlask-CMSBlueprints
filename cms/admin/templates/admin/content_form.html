@@ -31,7 +31,7 @@
               -->
               <select name="type_id">
                 {% for type in types %}
-                  <option {{ 'selected' if (type.name == type_name) }} value="{{type.id}}">{{type.name}}</option>
+                  <option  value="{{type.id}}" {{ 'selected' if (type.name == type_name) }}>{{type.name}}</option>
                 {% endfor %}
               </select>
             </div>
