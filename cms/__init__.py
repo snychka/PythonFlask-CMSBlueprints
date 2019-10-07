@@ -1,43 +1,16 @@
 from flask import Flask, render_template, abort
 from cms.admin.models import Type, Content, Setting, User, db
+from cms.admin import admin_bp
+
 
 app = Flask(__name__)
+# https://flask.palletsprojects.com/en/1.1.x/blueprints/#registering-blueprints
+app.register_blueprint(admin_bp)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///{}/{}'.format(app.root_path, 'content.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db.init_app(app)
 
-
-def requested_type(type):
-    types = [row.name for row in Type.query.all()]
-    return True if type in types else False
-
-@app.route('/', defaults = {'type': 'page'})
-@app.route('/<type>')
-def content(type):
-    if requested_type(type):
-        content = Content.query.join(Type).filter(Type.name == type)
-        return render_template('admin/content.html', type=type, content=content)
-    else:
-        abort(404)
-
-@app.route('/admin/create/<type>')
-def create(type):
-    if requested_type(type):
-        types = Type.query.all()
-        return render_template('admin/content_form.html', title='Create', types=types, type_name=type)
-    else:
-        abort(404)
-
-@app.route('/admin/users')
-def users():
-    users = User.query.all()
-    return render_template('admin/users.html', title='Users', users=users)
-
-@app.route('/admin/settings')
-def settings():
-    settings = Setting.query.all()
-    return render_template('admin/settings.html', title='Settings', settings=settings)
 
 @app.template_filter('pluralize')
 def pluralize(string, end=None, rep=''):
