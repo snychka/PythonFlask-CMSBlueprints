@@ -10,4 +10,5 @@ module2
   - missing . in type.id and type.name?
   - <option>'s start tag really confused me
   - order of select matters, shouldn't (Tom likely fixed)
-
+- 3
+  - url_for with admin.contents and type_name confused me

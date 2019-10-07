@@ -45,8 +45,13 @@
         </div>
         <div class="field is-grouped">
           <div class="control">
+            <input type='submit' class='button is-link' value='Submit'>
           </div>
           <div class="control">
+            <!-- had a really tough time.  admin.content is contents method in
+                 admin, and  type is argument name, type_name argument value to
+                 that method -->
+            <a class='button is-text' href={{ url_for('admin.content', type=type_name)}}>Cancel</a>
           </div>
         </div>
       </form>
