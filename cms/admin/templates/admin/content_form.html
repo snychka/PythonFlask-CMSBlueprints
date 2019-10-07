@@ -10,24 +10,37 @@
       <form>
         <div class="field">
           <label class="label">Title</label>
+          <!-- uncertain what "form control" meant.  used to "input field"  -->
           <div class="control">
+            <input type='text' name='title' class='input'>
           </div>
         </div>
         <div class="field">
           <label class="label">Slug</label>
           <div class="control">
+            <input type='text' name='slug' class='input'>
           </div>
         </div>
         <div class="field">
           <label class="label">Type</label>
           <div class="control">
             <div class="select">
+              <!--
+                https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select
+                https://jinja.palletsprojects.com/en/2.10.x/templates/
+              -->
+							<select name="type_id">
+                {% for type in types %}
+									<option {{ 'selected' if (type.name == type_name) }} value="{{type.id}}">{{type.name}}</option>
+                {% endfor %}
+							</select>
             </div>
           </div>
         </div>
         <div class="field">
           <label class="label">Content</label>
           <div class="control">
+            <textarea type='text' name='body' class='textarea'>
           </div>
         </div>
         <div class="field is-grouped">
