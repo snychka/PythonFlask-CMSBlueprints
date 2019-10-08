@@ -32,11 +32,14 @@ module2
 - 9
   - _Note:
   - for `id` make 
-10
-  - cms/admin/templates/admin/
+- 10
   - _query_ing twice
   - **BAD** , type_id vs type 202, tests/test_module2.py
-11
+- 11
   - `admin/content_form.html` quotes
   - `types`,
   - reverse everything
+- 12
+  - cms/admin/templates/admin/
+  - should be `Edit`
+  - <td><a class="button is-small is-primary is-pulled-right" href=" {{ url_for ('admin.edit', id=item.id)}} ">Edit</a></td>
