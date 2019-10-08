@@ -27,3 +27,5 @@ module2
   - == '': , is None: should likely also be accepted
   - nested nested ifs not great
 - 7
+- 8
+  - needed to import all on 1 line again

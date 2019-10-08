@@ -1,5 +1,6 @@
-from flask import Blueprint, render_template, abort, request
-from flask import request
+from flask import Blueprint, render_template, abort, request, redirect, url_for, flash
+# from flask import request, redirect, url_for, flash
+# from flask import redirect, url_for, flash
 from cms.admin.models import Type, Content, Setting, User, db
 
 # https://flask.palletsprojects.com/en/1.1.x/api/#flask.Blueprint
@@ -48,6 +49,10 @@ def create(type):
                 content = Content(title=title, slug=slug, type_id=type_id, body=body)
                 db.session.add(content)
                 db.session.commit()
+                # https://flask.palletsprojects.com/en/1.1.x/api/#flask.url_for
+                # remember type as an arg.  sigh
+                return redirect(url_for('admin.content', type=type))
+            flash(error)
         types = Type.query.all()
         return render_template('admin/content_form.html', title='Create', types=types, type_name=type)
     else:
