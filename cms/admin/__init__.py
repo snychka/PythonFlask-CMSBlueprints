@@ -75,3 +75,4 @@ def edit(id):
     # type = Type.query.get(content.type)
     type = Type.query.get(content.type_id)
     types = Type.query.all()
+    return render_template('admin/content_form.html', types = types, title = 'Edit'  , item_title = content.title , slug = content.slug , type_name = type.name  , type_id = content.type_id  , body = content.body )

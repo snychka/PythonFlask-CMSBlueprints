@@ -36,3 +36,7 @@ module2
   - cms/admin/templates/admin/
   - _query_ing twice
   - **BAD** , type_id vs type 202, tests/test_module2.py
+11
+  - `admin/content_form.html` quotes
+  - `types`,
+  - reverse everything
