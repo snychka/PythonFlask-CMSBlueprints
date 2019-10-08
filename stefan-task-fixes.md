@@ -42,4 +42,5 @@ module2
 - 12
   - cms/admin/templates/admin/
   - should be `Edit`
-  - <td><a class="button is-small is-primary is-pulled-right" href=" {{ url_for ('admin.edit', id=item.id)}} ">Edit</a></td>
+  - **BAD** get_calls not defined in test/test_module2.py
+    - <td><a class="button is-small is-primary is-pulled-right" href=" {{ url_for ('admin.edit', id=item.id)}} ">Edit</a></td>
