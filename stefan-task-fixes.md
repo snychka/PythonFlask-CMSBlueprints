@@ -1,4 +1,5 @@
 module2
+- split up into more tasks
 
 - 1
   - but
@@ -12,3 +13,9 @@ module2
   - order of select matters, shouldn't (Tom likely fixed)
 - 3
   - url_for with admin.contents and type_name confused me
+- 4
+  - _POST_ed
+  - from flask import Blueprint, render_template, abort, request !WORK
+  - Allow _POST_ requests too
+  - assert_right, \ tests/test_module2.py:169 does not print right error
+  -  allow request.form.get('title')

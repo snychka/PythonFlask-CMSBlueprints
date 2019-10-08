@@ -1,4 +1,5 @@
-from flask import Blueprint, render_template, abort
+from flask import Blueprint, render_template, abort, request
+from flask import request
 from cms.admin.models import Type, Content, Setting, User
 
 # https://flask.palletsprojects.com/en/1.1.x/api/#flask.Blueprint
@@ -20,9 +21,16 @@ def content(type):
     else:
         abort(404)
 
-@admin_bp.route('/admin/create/<type>')
+# https://stackoverflow.com/questions/22947905/flask-example-with-post
+@admin_bp.route('/admin/create/<type>', methods=['POST', 'GET'])
 def create(type):
     if requested_type(type):
+        # https://stackoverflow.com/questions/42018603/handling-get-and-post-in-same-flask-view
+        if request.method == 'POST':
+            # https://stackoverflow.com/questions/42154602/how-to-get-form-data-in-flask
+            # get doesn't pass
+            # title = request.form.get('title')
+            title = request.form['title']
         types = Type.query.all()
         return render_template('admin/content_form.html', title='Create', types=types, type_name=type)
     else:
