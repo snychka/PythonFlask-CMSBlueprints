@@ -75,4 +75,14 @@ def edit(id):
     # type = Type.query.get(content.type)
     type = Type.query.get(content.type_id)
     types = Type.query.all()
+    if request.method == 'POST':
+        content.id = request.form['id']
+        content.title = request.form['title']
+        content.slug = request.form['slug']
+        content.type_id = request.form['type_id']
+        content.type = request.form['type']
+        content.body = request.form['body']
+        # content.created_at = request.form['created_at']
+        content.updated_at = datetime.utcnow()
+        error = None
     return render_template('admin/content_form.html', types = types, title = 'Edit'  , item_title = content.title , slug = content.slug , type_name = type.name  , type_id = content.type_id  , body = content.body )
