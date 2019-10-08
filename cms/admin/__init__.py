@@ -71,3 +71,7 @@ def settings():
 @admin_bp.route('/admin/edit/<id>', methods=['POST', 'GET'])
 def edit(id):
     content = Content.query.get_or_404(id)
+    # should be type?  instead of type_id tests/test_module2.py:410
+    # type = Type.query.get(content.type)
+    type = Type.query.get(content.type_id)
+    types = Type.query.all()

@@ -32,3 +32,7 @@ module2
 - 9
   - _Note:
   - for `id` make 
+10
+  - cms/admin/templates/admin/
+  - _query_ing twice
+  - **BAD** , type_id vs type 202, tests/test_module2.py
