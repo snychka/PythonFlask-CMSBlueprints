@@ -85,4 +85,6 @@ def edit(id):
         # content.created_at = request.form['created_at']
         content.updated_at = datetime.utcnow()
         error = None
+        if not request.form['title']:
+            error = 'title is empty'
     return render_template('admin/content_form.html', types = types, title = 'Edit'  , item_title = content.title , slug = content.slug , type_name = type.name  , type_id = content.type_id  , body = content.body )

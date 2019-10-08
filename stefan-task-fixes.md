@@ -46,3 +46,6 @@ module2
     - <td><a class="button is-small is-primary is-pulled-right" href=" {{ url_for ('admin.edit', id=item.id)}} ">Edit</a></td>
 - 13
   - which 5?  more in Content ctor
+- 14
+  - if not request.form['title']: should allow content.title
+  - probably == '' and is None aren't allowed either
