@@ -49,3 +49,7 @@ module2
 - 14
   - if not request.form['title']: should allow content.title
   - probably == '' and is None aren't allowed either
+- 15
+  - commited
+  - were
+  - 'admin.content', but require 'content'
