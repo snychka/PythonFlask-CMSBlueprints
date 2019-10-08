@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, abort, request
 from flask import request
-from cms.admin.models import Type, Content, Setting, User
+from cms.admin.models import Type, Content, Setting, User, db
 
 # https://flask.palletsprojects.com/en/1.1.x/api/#flask.Blueprint
 # https://flask.palletsprojects.com/en/1.1.x/blueprints/#blueprints
@@ -44,6 +44,10 @@ def create(type):
             # WRONG?? should be type??
             elif not type_id:
                 error = 'type is empty'
+            if error is None:
+                content = Content(title=title, slug=slug, type_id=type_id, body=body)
+                db.session.add(content)
+                db.session.commit()
         types = Type.query.all()
         return render_template('admin/content_form.html', title='Create', types=types, type_name=type)
     else:

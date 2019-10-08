@@ -25,3 +25,5 @@ module2
 - 6
   - **BAD** , type_id vs type 202, tests/test_module2.py
   - == '': , is None: should likely also be accepted
+  - nested nested ifs not great
+- 7
