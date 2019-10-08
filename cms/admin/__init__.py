@@ -31,6 +31,10 @@ def create(type):
             # get doesn't pass
             # title = request.form.get('title')
             title = request.form['title']
+            slug = request.form['slug']
+            type_id = request.form['type_id']
+            body = request.form['body']
+            error = None
         types = Type.query.all()
         return render_template('admin/content_form.html', title='Create', types=types, type_name=type)
     else:

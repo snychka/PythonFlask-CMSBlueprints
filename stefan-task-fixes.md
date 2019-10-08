@@ -19,3 +19,6 @@ module2
   - Allow _POST_ requests too
   - assert_right, \ tests/test_module2.py:169 does not print right error
   -  allow request.form.get('title')
+- 5
+  - `body
+  - so, 
