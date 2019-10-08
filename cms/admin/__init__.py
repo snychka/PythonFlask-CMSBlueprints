@@ -35,6 +35,15 @@ def create(type):
             type_id = request.form['type_id']
             body = request.form['body']
             error = None
+            # if title == '' :
+            # if title is None:
+            if not title: 
+                error = 'title is empty'
+            # elif type == '':
+            # elif type is None:
+            # WRONG?? should be type??
+            elif not type_id:
+                error = 'type is empty'
         types = Type.query.all()
         return render_template('admin/content_form.html', title='Create', types=types, type_name=type)
     else:
