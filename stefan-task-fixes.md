@@ -1,0 +1,55 @@
+module2
+- split up into more tasks
+
+- 1
+  - but
+  - no cms
+  - form control?  input fields
+  - no Body (I used Content, and still called it body)
+- 2
+  - for bit a bit oddly worded
+  - missing . in type.id and type.name?
+  - <option>'s start tag really confused me
+  - order of select matters, shouldn't (Tom likely fixed)
+- 3
+  - url_for with admin.contents and type_name confused me
+- 4
+  - _POST_ed
+  - from flask import Blueprint, render_template, abort, request !WORK
+  - Allow _POST_ requests too
+  - assert_right, \ tests/test_module2.py:169 does not print right error
+  -  allow request.form.get('title')
+- 5
+  - `body
+  - so, 
+- 6
+  - **BAD** , type_id vs type 202, tests/test_module2.py
+  - == '': , is None: should likely also be accepted
+  - nested nested ifs not great
+- 7
+- 8
+  - needed to import all on 1 line again
+- 9
+  - _Note:
+  - for `id` make 
+- 10
+  - _query_ing twice
+  - **BAD** , type_id vs type 202, tests/test_module2.py
+- 11
+  - `admin/content_form.html` quotes
+  - `types`,
+  - reverse everything
+- 12
+  - cms/admin/templates/admin/
+  - should be `Edit`
+  - **BAD** get_calls not defined in test/test_module2.py
+    - <td><a class="button is-small is-primary is-pulled-right" href=" {{ url_for ('admin.edit', id=item.id)}} ">Edit</a></td>
+- 13
+  - which 5?  more in Content ctor
+- 14
+  - if not request.form['title']: should allow content.title
+  - probably == '' and is None aren't allowed either
+- 15
+  - commited
+  - were
+  - 'admin.content', but require 'content'
