@@ -89,7 +89,6 @@ def edit(id):
             error = 'title is empty'
         if error is None:
             db.session.commit()
-            # return redirect(url_for('admin.content', content=content, type=type.name))
-            return redirect(url_for('content', content=content, type=type.name))
+            return redirect(url_for('admin.content', content=content, type=type.name))
         flash(error)
     return render_template('admin/content_form.html', types = types, title = 'Edit'  , item_title = content.title , slug = content.slug , type_name = type.name  , type_id = content.type_id  , body = content.body )
