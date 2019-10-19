@@ -23,7 +23,7 @@ def content(type):
         abort(404)
 
 # https://stackoverflow.com/questions/22947905/flask-example-with-post
-@admin_bp.route('/admin/create/<type>', methods=['POST', 'GET'])
+@admin_bp.route('/create/<type>', methods=['POST', 'GET'])
 def create(type):
     if requested_type(type):
         # https://stackoverflow.com/questions/42018603/handling-get-and-post-in-same-flask-view
@@ -58,17 +58,17 @@ def create(type):
     else:
         abort(404)
 
-@admin_bp.route('/admin/users')
+@admin_bp.route('/users')
 def users():
     users = User.query.all()
     return render_template('admin/users.html', title='Users', users=users)
 
-@admin_bp.route('/admin/settings')
+@admin_bp.route('/settings')
 def settings():
     settings = Setting.query.all()
     return render_template('admin/settings.html', title='Settings', settings=settings)
 
-@admin_bp.route('/admin/edit/<id>', methods=['POST', 'GET'])
+@admin_bp.route('/edit/<id>', methods=['POST', 'GET'])
 def edit(id):
     content = Content.query.get_or_404(id)
     # should be type?  instead of type_id tests/test_module2.py:410
