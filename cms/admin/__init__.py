@@ -40,9 +40,8 @@ def create(type):
             # if title is None:
             if not title: 
                 error = 'title is empty'
-            # elif type == '':
-            # elif type is None:
-            # WRONG?? should be type??
+            # elif type_id == '':
+            # elif type_id is None:
             elif not type_id:
                 error = 'type is empty'
             if error is None:
