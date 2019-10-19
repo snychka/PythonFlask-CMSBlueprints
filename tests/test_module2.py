@@ -628,4 +628,3 @@ def test_edit_route_update_data_module2():
         node.value[1].value[0].value.value == 'error') is not None
     assert flash_exists, \
         'Are you flashing an `error` at the end of the `request.method` `if`?'
->>>>>>> master_v1
