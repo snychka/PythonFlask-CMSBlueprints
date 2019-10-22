@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, abort, request, redirect, url_for,
 # from flask import request, redirect, url_for, flash
 # from flask import redirect, url_for, flash
 from cms.admin.models import Type, Content, Setting, User, db
+from datetime import datetime
 
 # https://flask.palletsprojects.com/en/1.1.x/api/#flask.Blueprint
 # https://flask.palletsprojects.com/en/1.1.x/blueprints/#blueprints
@@ -75,11 +76,11 @@ def edit(id):
     type = Type.query.get(content.type_id)
     types = Type.query.all()
     if request.method == 'POST':
-        content.id = request.form['id']
+        # content.id = request.form['id']
         content.title = request.form['title']
         content.slug = request.form['slug']
         content.type_id = request.form['type_id']
-        content.type = request.form['type']
+        # content.type = request.form['type']
         content.body = request.form['body']
         # content.created_at = request.form['created_at']
         content.updated_at = datetime.utcnow()
@@ -89,6 +90,6 @@ def edit(id):
         if error is None:
             db.session.commit()
             # return redirect(url_for('admin.content', content=content, type=type.name))
-            return redirect(url_for('content', content=content, type=type.name))
+            return redirect(url_for('admin.content', content=content, type=type.name))
         flash(error)
     return render_template('admin/content_form.html', types = types, title = 'Edit'  , item_title = content.title , slug = content.slug , type_name = type.name  , type_id = content.type_id  , body = content.body )
