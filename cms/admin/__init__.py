@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, abort, request, redirect, url_for,
 # from flask import request, redirect, url_for, flash
 # from flask import redirect, url_for, flash
 from cms.admin.models import Type, Content, Setting, User, db
+from datetime import datetime
 
 # https://flask.palletsprojects.com/en/1.1.x/api/#flask.Blueprint
 # https://flask.palletsprojects.com/en/1.1.x/blueprints/#blueprints
@@ -23,7 +24,7 @@ def content(type):
         abort(404)
 
 # https://stackoverflow.com/questions/22947905/flask-example-with-post
-@admin_bp.route('/admin/create/<type>', methods=['POST', 'GET'])
+@admin_bp.route('/create/<type>', methods=['POST', 'GET'])
 def create(type):
     if requested_type(type):
         # https://stackoverflow.com/questions/42018603/handling-get-and-post-in-same-flask-view
@@ -40,9 +41,8 @@ def create(type):
             # if title is None:
             if not title: 
                 error = 'title is empty'
-            # elif type == '':
-            # elif type is None:
-            # WRONG?? should be type??
+            # elif type_id == '':
+            # elif type_id is None:
             elif not type_id:
                 error = 'type is empty'
             if error is None:
@@ -58,17 +58,17 @@ def create(type):
     else:
         abort(404)
 
-@admin_bp.route('/admin/users')
+@admin_bp.route('/users')
 def users():
     users = User.query.all()
     return render_template('admin/users.html', title='Users', users=users)
 
-@admin_bp.route('/admin/settings')
+@admin_bp.route('/settings')
 def settings():
     settings = Setting.query.all()
     return render_template('admin/settings.html', title='Settings', settings=settings)
 
-@admin_bp.route('/admin/edit/<id>', methods=['POST', 'GET'])
+@admin_bp.route('/edit/<id>', methods=['POST', 'GET'])
 def edit(id):
     content = Content.query.get_or_404(id)
     # should be type?  instead of type_id tests/test_module2.py:410
@@ -76,11 +76,11 @@ def edit(id):
     type = Type.query.get(content.type_id)
     types = Type.query.all()
     if request.method == 'POST':
-        content.id = request.form['id']
+        # content.id = request.form['id']
         content.title = request.form['title']
         content.slug = request.form['slug']
         content.type_id = request.form['type_id']
-        content.type = request.form['type']
+        # content.type = request.form['type']
         content.body = request.form['body']
         # content.created_at = request.form['created_at']
         content.updated_at = datetime.utcnow()

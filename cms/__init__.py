@@ -3,6 +3,7 @@ from cms.admin.models import Type, Content, Setting, User, db
 from cms.admin import admin_bp
 
 
+## Application Configuration
 app = Flask(__name__)
 # https://flask.palletsprojects.com/en/1.1.x/blueprints/#registering-blueprints
 app.register_blueprint(admin_bp)
@@ -12,7 +13,7 @@ app.config['SECRET_KEY'] = 'b2de7FkqvkMyqzNFzxCkgnPKIGP6i4Rc'
 
 db.init_app(app)
 
-
+## Front-end Route
 @app.template_filter('pluralize')
 def pluralize(string, end=None, rep=''):
     if end and string.endswith(end):
@@ -20,12 +21,13 @@ def pluralize(string, end=None, rep=''):
     else:
         return string + 's'
 
-@app.route('/', defaults = {'slug': 'home'})
+@app.route('/', defaults={'slug': 'home'})
 @app.route('/<slug>')
 def index(slug):
     titles = Content.query.with_entities(Content.slug, Content.title).join(Type).filter(Type.name == 'page')
     content = Content.query.filter(Content.slug == slug).first_or_404()
     return render_template('index.html', titles=titles, content=content)
+#!
 
 if __name__ == "__main__":
     app.run(debug=True)
